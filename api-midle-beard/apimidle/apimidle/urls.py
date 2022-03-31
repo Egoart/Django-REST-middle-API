@@ -14,23 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path
 from api import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user-generate/', views.UserGenerator.as_view()),
-    path('todo-generate/', views.TodoGenerator.as_view()),
-    path('photo-generate/', views.PhotoGenerator.as_view()),
-    path('album-generate/', views.AlbumGenerator.as_view()),
-    path('post-generate/', views.PostGenerator.as_view()),
-    path('users/', views.UserList.as_view()),
-    path('todos/', views.TodoList.as_view()),
-    path('photos/', views.PhotoList.as_view()),
-    path('albums/', views.AlbumList.as_view()),
-    path('posts/', views.PostListView.as_view()),
-    path('comments/', views.CommentFilterView.as_view()),
-    path('posts/<int:pk>', views.SinglePost.as_view()),
-    path('posts/<int:pk>/comments', views.SinglePostComments.as_view()),
-    path('post-create/', views.CreatePost.as_view()),
+    path("admin/", admin.site.urls),
+    path("user-generate/", views.UserGenerator.as_view()),
+    path("todo-generate/", views.TodoGenerator.as_view()),
+    path("photo-generate/", views.PhotoGenerator.as_view()),
+    path("album-generate/", views.AlbumGenerator.as_view()),
+    path("post-generate/", views.PostGenerator.as_view()),
+    path("users/", views.UserList.as_view()),
+    path("todos/", views.TodoList.as_view()),
+    path("photos/", views.PhotoList.as_view()),
+    path("albums/", views.AlbumList.as_view()),
+    path("posts/", views.PostListView.as_view()),
+    path("comments/", views.CommentFilterView.as_view()),
+    path("posts/<int:pk>", views.SinglePost.as_view()),
+    path("posts/<int:pk>/comments", views.SinglePostComments.as_view()),
+    path("post-create/", views.CreatePost.as_view()),
 ]

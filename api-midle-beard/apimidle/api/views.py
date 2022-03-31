@@ -1,11 +1,22 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import User, Todos, Photo, Album, Post, Comment
-from .serializers import UserSerializer, TodosSerializer, PhotoSerializer, AlbumSerializer, PostSerializer, CommentSerializer
+from .serializers import (
+    UserSerializer,
+    TodosSerializer,
+    PhotoSerializer,
+    AlbumSerializer,
+    PostSerializer,
+    CommentSerializer,
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveAPIView
+
+from rest_framework.generics import (
+    RetrieveUpdateDestroyAPIView,
+    CreateAPIView,
+)
+
 # Create your views here.
 
 
@@ -15,13 +26,16 @@ class PostListView(APIView):
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 
+
 class CreatePost(CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+
 class SinglePost(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
 
 class SinglePostComments(APIView):
     def get(self, request, pk):
@@ -30,13 +44,14 @@ class SinglePostComments(APIView):
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
+
 class CommentFilterView(generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
     def get_queryset(self):
         queryset = Comment.objects.all()
-        postId = self.request.query_params.get('postId')
+        postId = self.request.query_params.get("postId")
         if postId is not None:
             queryset = queryset.filter(postId=postId)
         return queryset
@@ -54,6 +69,7 @@ class PostGenerator(generics.ListCreateAPIView):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, headers=headers)
 
+
 class AlbumGenerator(generics.ListCreateAPIView):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
@@ -65,6 +81,7 @@ class AlbumGenerator(generics.ListCreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, headers=headers)
+
 
 class AlbumList(APIView):
     def get(self, request, format=None):
@@ -85,11 +102,13 @@ class PhotoGenerator(generics.ListCreateAPIView):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, headers=headers)
 
+
 class PhotoList(APIView):
     def get(self, request, format=None):
         photos = Photo.objects.all()
         serializer = PhotoSerializer(photos, many=True)
         return Response(serializer.data)
+
 
 class TodoGenerator(generics.ListCreateAPIView):
     queryset = Todos.objects.all()
@@ -103,11 +122,13 @@ class TodoGenerator(generics.ListCreateAPIView):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, headers=headers)
 
+
 class TodoList(APIView):
     def get(self, request, format=None):
         todos = Todos.objects.all()
         serializer = TodosSerializer(todos, many=True)
         return Response(serializer.data)
+
 
 class UserGenerator(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -120,6 +141,7 @@ class UserGenerator(generics.ListCreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, headers=headers)
+
 
 class UserList(APIView):
     def get(self, request, format=None):

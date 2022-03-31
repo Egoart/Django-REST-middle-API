@@ -1,14 +1,5 @@
 from django.contrib import admin
-from api.models import (
-                        User, 
-                        Address, 
-                        Company, 
-                        Geo, 
-                        Todos, 
-                        Photo,
-                        Album,
-                        Post,
-                        Comment)
+from api.models import User, Address, Company, Geo, Todos, Photo, Album, Post, Comment
 
 
 admin.site.register(User)
