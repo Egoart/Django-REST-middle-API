@@ -29,7 +29,7 @@ urlpatterns = [
     path("users/", views.UserList.as_view()),
     path("todos/", views.TodoList.as_view()),
     path("photos/", views.PhotoList.as_view()),
-    path("albums/", views.AlbumList.as_view()),
+    path("albums/", views.AlbumList.as_view(), name="albums"),
     path("posts/", views.PostListView.as_view()),
     path("comments/", views.CommentFilterView.as_view()),
     path("posts/<int:pk>", views.SinglePost.as_view()),
