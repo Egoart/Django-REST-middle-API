@@ -19,6 +19,7 @@ from api import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", views.index, name="index"),
     path("user-generate/", views.UserGenerator.as_view()),
     path("todo-generate/", views.TodoGenerator.as_view()),
     path("photo-generate/", views.PhotoGenerator.as_view()),

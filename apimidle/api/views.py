@@ -148,3 +148,7 @@ class UserList(APIView):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+
+
+def index(request):
+    return render(request, "api/index.html")
