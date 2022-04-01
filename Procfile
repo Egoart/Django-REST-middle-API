@@ -1,1 +1,1 @@
-web: gunicorn apimidle:app
+web: gunicorn apimidle.wsgi 
