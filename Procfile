@@ -1,1 +1,1 @@
-web: gunicorn --chdir apimidle apimidle.wsgi
+web: gunicorn apimidle.wsgi
