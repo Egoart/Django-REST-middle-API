@@ -25,6 +25,7 @@ urlpatterns = [
     path("photo-generate/", views.PhotoGenerator.as_view()),
     path("album-generate/", views.AlbumGenerator.as_view()),
     path("post-generate/", views.PostGenerator.as_view()),
+    path("comment-generate/", views.CommentGenerator.as_view()),
     path("users/", views.UserList.as_view()),
     path("todos/", views.TodoList.as_view()),
     path("photos/", views.PhotoList.as_view()),

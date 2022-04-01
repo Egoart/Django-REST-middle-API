@@ -24,6 +24,12 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = "__all__"
 
+    def create(self, validated_data):
+        postId = validated_data.pop("postId", None)
+        comment = Comment.objects.create(postId=postId, **validated_data)
+
+        return comment
+
 
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:

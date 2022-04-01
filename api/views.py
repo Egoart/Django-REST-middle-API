@@ -45,6 +45,19 @@ class SinglePostComments(APIView):
         return Response(serializer.data)
 
 
+class CommentGenerator(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    def create(self, request, *args, **kwargs):
+        many = isinstance(request.data, list)
+        serializer = self.get_serializer(data=request.data, many=many)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, headers=headers)
+
+
 class CommentFilterView(generics.ListAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
