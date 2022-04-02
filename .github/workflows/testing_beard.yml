@@ -14,6 +14,9 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [3.9]
+    env: 
+        SECRET_KEY: 2%bk0-+c+2&zr%7g5s!9jlo9mup7=^8(p)fx@aui33mk2x33_)
+        ENVIRONMENT: github
 
     steps:
     - uses: actions/checkout@v3
@@ -26,7 +29,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
-      env: 
-        SECRET_KEY: 2%bk0-+c+2&zr%7g5s!9jlo9mup7=^8(p)fx@aui33mk2x33_)
       run: |
         python manage.py test
